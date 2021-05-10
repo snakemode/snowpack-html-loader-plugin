@@ -1,0 +1,19 @@
+{
+  "name": "@snakemode/snowpack-html-loader-plugin",
+  "version": "1.0.0",
+  "description": "Snowpack HTML loader for loading .template.html files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snakemode/snowpack-html-loader-plugin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snakemode/snowpack-html-loader-plugin/issues"
+  },
+  "homepage": "https://github.com/snakemode/snowpack-html-loader-plugin#readme"
+}
