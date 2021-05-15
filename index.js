@@ -1,24 +1,26 @@
-  const fs = require("fs");
+const fs = require("fs");
+const loader = require("./loader");
 
-  module.exports = function (snowpackConfig, pluginOptions) {
-    return {
-      name: '@snakemode/snowpack-html-loader-plugin',
-      resolve: {
-        input: ['.template.html' ],
-        output: ['.js'],
-      },
-      async load({filePath}) {
-        const result = fs.readFileSync(filePath, { encoding: "utf-8"});
-        const asString = JSON.stringify(result);
-        const asJs = [
-            `const markup = ${asString};`, 
-            `const container = document.createElement("div");`,
-            `container.innerHTML = markup;`,
-            `const template = container.childNodes[0];`,
-            `export { markup, template };`,
-            `export default template;`,
-        ];
-        return asJs.join('\n').trim();
-      },
-    };
+async function onLoad({ filePath }) {
+  const result = fs.readFileSync(filePath, { encoding: "utf-8" });
+  const asString = JSON.stringify(result);
+  const loaderBody = loader.toString();
+
+  return `
+const loader = ${loaderBody};
+const markup = ${asString};
+const templates = loader(markup);
+export default templates;
+  `.trim();
+}
+
+module.exports = function (snowpackConfig, pluginOptions) {
+  return {
+    name: '@snakemode/snowpack-html-loader-plugin',
+    resolve: {
+      input: ['.template.html'],
+      output: ['.js'],
+    },
+    load: onLoad,
   };
+};

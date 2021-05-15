@@ -1,6 +1,6 @@
 {
   "name": "@snakemode/snowpack-html-loader-plugin",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Snowpack HTML loader for loading .template.html files",
   "main": "index.js",
   "scripts": {
@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/snakemode/snowpack-html-loader-plugin/issues"
   },
-  "homepage": "https://github.com/snakemode/snowpack-html-loader-plugin#readme"
+  "homepage": "https://github.com/snakemode/snowpack-html-loader-plugin#readme",
+  "devDependencies": {
+    "@jest/types": "^26.6.2",
+    "jest": "^26.6.3"
+  }
 }
